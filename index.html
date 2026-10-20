@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Petualangan Cloud Kedai Senja</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#e8eff6;--card:#fff;--tx:#12263f;--mu:#55657a;--bd:#b9c7d8;--ac:#0b7a75;--or:#d98a00;--ok:#1a7f45;--bt:#fff;--g1:#dbeafe;--gb1:#3b82f6;--g2:#dcfce7;--gb2:#22a35a;--g3:#fef3c7;--gb3:#d19a00;--g4:#fce7f3;--gb4:#d6458f;--g5:#ede9fe;--gb5:#7c5cd6;--g6:#ffedd5;--gb6:#e0752a;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1a2b;--card:#16283f;--tx:#e6eef8;--mu:#9db0c7;--bd:#38506f;--ac:#2cc4b8;--or:#ffb43a;--ok:#5ad88a;--bt:#0c1a2b;--g1:#16335a;--gb1:#6aa4ff;--g2:#14412c;--gb2:#4ade80;--g3:#4a3a0e;--gb3:#f5c542;--g4:#4d1f3a;--gb4:#f472b6;--g5:#33275c;--gb5:#a78bfa;--g6:#4d2c12;--gb6:#fb923c;}}
+:root[data-theme="dark"]{--bg:#0c1a2b;--card:#16283f;--tx:#e6eef8;--mu:#9db0c7;--bd:#38506f;--ac:#2cc4b8;--or:#ffb43a;--ok:#5ad88a;--bt:#0c1a2b;--g1:#16335a;--gb1:#6aa4ff;--g2:#14412c;--gb2:#4ade80;--g3:#4a3a0e;--gb3:#f5c542;--g4:#4d1f3a;--gb4:#f472b6;--g5:#33275c;--gb5:#a78bfa;--g6:#4d2c12;--gb6:#fb923c;}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,"Segoe UI",Arial,sans-serif}
+header{padding:16px 20px 0}h1{margin:0;font-size:24px}header p{margin:4px 0 10px;color:var(--mu)}
+#nav{display:flex;gap:10px 18px;flex-wrap:wrap}.ng{display:flex;flex-direction:column;gap:4px;padding:6px 10px 8px;border-radius:12px;color:var(--tx)}.ng1{background:var(--g1);border:2px solid var(--gb1);border-left-width:8px}.ng2{background:var(--g2);border:2px solid var(--gb2);border-left-width:8px}.ng3{background:var(--g3);border:2px solid var(--gb3);border-left-width:8px}.ng4{background:var(--g4);border:2px solid var(--gb4);border-left-width:8px}.ng5{background:var(--g5);border:2px solid var(--gb5);border-left-width:8px}.ng6{background:var(--g6);border:2px solid var(--gb6);border-left-width:8px}.gh{color:var(--tx)!important}.gh{font-size:13px;font-weight:700;color:var(--mu)}.gb{display:flex;gap:6px;flex-wrap:wrap}#nav button{width:38px;height:38px;padding:0;border-radius:50%;font-weight:700;cursor:pointer}
+#nav .cur{border-color:var(--ac);background:var(--ac);color:var(--bt)}#nav .dn{border-color:var(--ok)}#nav .dp{border-style:dashed}
+#bar{height:6px;background:var(--bd);border-radius:3px;margin:12px 0}#bar i{display:block;height:100%;width:0;background:var(--ok);border-radius:3px;transition:width .4s}
+main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:16px;padding:0 20px 20px}
+@media(max-width:860px){main{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+#stage{width:100%;height:auto;display:block}
+.nd rect{fill:var(--bg);stroke:var(--bd);stroke-width:2}.ln{stroke:var(--bd);stroke-width:4}.ln.on{stroke:var(--ac)}
+svg text{fill:var(--tx);font-family:inherit}
+.pt rect{fill:var(--bg);stroke:var(--bd);stroke-width:3;cursor:pointer}.pt:hover rect{stroke:var(--ac)}#stage [data-k]:focus-visible{outline:3px solid var(--or);outline-offset:2px}#stage [data-k]:focus-visible rect{stroke:var(--or);stroke-width:4}
+aside h2{margin:0 0 4px;font-size:20px}aside p{margin:6px 0}
+.mi{background:var(--bg);border-left:4px solid var(--or);padding:8px 10px;border-radius:6px}.mi.done{border-color:var(--ok)}.mi.done::after{content:" ✅"}
+#ctl{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,input,select{font:inherit;padding:8px 12px;border-radius:10px;border:2px solid var(--bd);background:var(--card);color:var(--tx)}
+#ctl button,.pn button{cursor:pointer;background:var(--ac);color:var(--bt);border-color:var(--ac);font-weight:600}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+#msg{min-height:3em;font-weight:600}#msg.ok{color:var(--ok)}#msg.bad{color:var(--or)}
+code{word-break:break-all;background:var(--bg);padding:2px 6px;border-radius:6px}
+.pn{display:flex;justify-content:space-between;margin-top:12px}
+#qz{margin-top:12px;border-top:1px solid var(--bd);padding-top:10px}#qz p{margin:4px 0}
+#qz .o,#out .o{display:block;width:100%;text-align:left;margin:6px 0;cursor:pointer}#qz .o.good,#out .o.good{border-color:var(--ok);font-weight:700}#qz .o.bad,#out .o.bad{border-color:var(--or);text-decoration:line-through}
+.box{overflow-x:auto}
+.rot{display:none;margin:6px 0 0;font-size:13px;color:var(--mu)}
+@media(max-width:640px){.box{overflow-x:visible}.rot{display:block}#stage{min-width:0;width:100%}#stage text:not([font-size]),#stage text[font-size="9"],#stage text[font-size="11"],#stage text[font-size="12"],#stage text[font-size="13"],#stage text[font-size="14"],#stage text[font-size="15"],#stage text[font-size="16"]{font-size:17px}}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}#ov[hidden]{display:none}
+#ov>div{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:12px;max-width:760px;width:100%;max-height:88vh;overflow:auto;padding:16px}#ov h2{margin:8px 0}
+.hb{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}.hb button{cursor:pointer}
+#wl{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:16px;z-index:30;overflow:auto}#wl[hidden]{display:none}#wlb{background:var(--card);border:1px solid var(--bd);border-radius:12px;max-width:640px;width:100%;padding:20px;max-height:100%;overflow:auto}#wlb h2{margin:0 0 8px}#wlb button[type=submit],#wlb>button{cursor:pointer;background:var(--ac);color:var(--bt);border-color:var(--ac);font-weight:700}#wlb form button{cursor:pointer}
+#gs{margin:4px 0 8px}#gs b{font-size:17px}#gx,#gw{color:var(--mu);margin-left:4px}#gbar{height:8px;background:var(--bd);border-radius:4px;margin-top:6px;max-width:420px}#gbar i{display:block;height:100%;width:0;background:var(--or);border-radius:4px;transition:width .4s}
+#tst{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--ac);color:var(--bt);padding:10px 16px;border-radius:12px;font-weight:700;z-index:40;max-width:92vw;box-shadow:0 4px 16px rgba(0,0,0,.3)}#tst[hidden]{display:none}
+#ovb .o{display:block;width:100%;text-align:left;margin:6px 0;cursor:pointer}#ovb .o.good{border-color:var(--ok);font-weight:700}#ovb .o.bad{border-color:var(--or);text-decoration:line-through}#ovb>div button,#ovb>button{cursor:pointer}
+#dvr{margin:6px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}#dvr button{padding:4px 10px;cursor:pointer}
+.mi:empty{display:none}#sd{margin:0 6px}
+</style></head><body>
+<header><h1>☁️ Belajar Teknologi Cloud Berbasis Simulasi dan Interaktif</h1><p><b>Petualangan Cloud Kedai Senja.</b> Kerjakan misi di setiap tahap. Bulatan bertanda ✓ berarti misinya selesai. Bulatan bergaris putus adalah tahap pendalaman (opsional); 18 tahap inti cukup untuk sekitar 75 menit. Catatan: nama kedai, penyedia "Awan Nusantara", harga, dan angka di aplikasi ini adalah ilustrasi, bukan tarif penyedia sungguhan. Skor pertanyaan: <b id="sc">0/0</b>. Tidak ada batas waktu: kemajuan tersimpan otomatis, jadi boleh dicicil.</p><div class="hb"><button id="dv">🧰 Galeri layanan</button><button id="ib">⚡ Insiden</button><button id="sb">📜 Cerita wilayah</button><button id="bb">🏆 Pangkat dan lencana</button><button id="sm">📊 Ringkasan hasil</button><button id="gl">📖 Glosarium</button><button id="rs">Mulai ulang kemajuan</button><button id="pt">💰 Poin</button><button id="ts" hidden>📝 Tes</button><button id="gu" hidden>👩‍🏫 Guru</button><button id="ad" hidden>🛠️ Admin</button><button id="cu">Keluar</button></div><div id="gs"><span id="gp"></span> <b id="sd" title="Saldo poin"></b> <b id="gr"></b> <span id="gx"></span> <span id="gw"></span><div id="gbar" aria-hidden="true"><i></i></div></div><nav id="nav" aria-label="Tahap simulasi"></nav><div id="bar"><i></i></div></header>
+<main><div class="box"><svg id="stage" viewBox="0 0 800 420" role="group" aria-label="Area simulasi"></svg><p class="rot">Tip: putar ponsel ke mode mendatar atau cubit layar untuk memperbesar gambar.</p></div>
+<aside class="box"><h2 id="tt"></h2><p id="lv" style="color:var(--mu);font-size:14px;margin:0"></p><p id="dd"></p><p id="mm" class="mi"></p><div id="dvr"></div><div id="ctl"></div><div id="msg" aria-live="polite"></div><div id="out" aria-live="polite"></div><div id="qz"></div><div class="pn"><button id="pv">← Sebelumnya</button><button id="nx">Lanjut →</button></div></aside></main>
+<div id="wl" hidden role="dialog" aria-modal="true" aria-labelledby="wlt"><div id="wlb"></div></div>
+<div id="tst" role="status" aria-live="polite" hidden></div>
+<div id="ov" hidden role="dialog" aria-modal="true" aria-labelledby="ovt"><div><button id="ovx">✕ Tutup</button><h2 id="ovt"></h2><div id="ovb"></div></div></div>
+<script>
+const $=s=>document.querySelector(s),NS='http://www.w3.org/2000/svg',st=$('#stage'),ctl=$('#ctl'),msg=$('#msg'),out=$('#out');
+let I=0,TK=0;const done={};
+const E=(t,h)=>{const e=document.createElement(t);if(h!==undefined)e.innerHTML=h;return e};
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const say=(t,c)=>{msg.innerHTML=t;msg.className=c||''};
+const B=(t,f)=>{const b=E('button',t);b.onclick=f;ctl.append(b);return b};
+const IN=v=>{const i=E('input');i.value=v;ctl.append(i);return i};
+const SE=(o,v)=>{const s=E('select',o.map(x=>`<option>${x}</option>`).join(''));if(v)s.value=v;ctl.append(s);return s};
+const AL={mon:'Monitor',kb:'Keyboard dan mouse',cpu:'CPU dan RAM',hdd:'Penyimpanan',A:'Access point',S:'Switch',R:'Router',M:'Modem'};
+const svg=h=>{const a=document.activeElement,k=a&&st.contains(a)?a.dataset.k:null;st.innerHTML=h;
+ st.querySelectorAll('[data-p],[data-w],[data-n]').forEach(g=>{const d=g.dataset,v=d.p||d.w||d.n;g.dataset.k=(d.p?'p':d.w!==undefined?'w':'n')+v;g.tabIndex=0;g.setAttribute('role','button');g.setAttribute('aria-label',g.dataset.l||(d.p?AL[d.p]:d.w!==undefined?'Kawat posisi '+(+d.w+1):g.textContent.trim()))});
+ if(k){const e=st.querySelector(`[data-k="${k}"]`);if(e)e.focus()}};
+const nd=(x,y,ic,lb)=>`<g class="nd" transform="translate(${x},${y})"><rect x="-36" y="-28" width="72" height="56" rx="12"/><text y="9" text-anchor="middle" font-size="28">${ic}</text><text y="48" text-anchor="middle" font-size="13">${lb}</text></g>`;
+const ln=(a,b,on)=>`<line class="ln${on?' on':''}" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`;
+const T=(x,y,t,z)=>{const e=document.createElementNS(NS,'text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('text-anchor','middle');e.setAttribute('font-size',z||16);e.textContent=t;st.append(e);return e};
+const ok=()=>{if(!done[I]){done[I]=1;upd()}$('#mm').classList.add('done');showQ('c')};
+function fly(p,col,cb,lb,sp){const tk=TK,g=document.createElementNS(NS,'g');g.innerHTML=`<circle r="10" fill="${col||'var(--or)'}"/><text y="-15" text-anchor="middle" font-size="13" font-weight="700">${lb||''}</text>`;g.setAttribute('transform',`translate(${p[0]})`);st.append(g);let i=0,t0=0;
+ const f=ts=>{if(tk!=TK){g.remove();return}if(!t0)t0=ts;const a=p[i],b=p[i+1],d=Math.max(Math.hypot(b[0]-a[0],b[1]-a[1])/(sp||.5),1),k=Math.min((ts-t0)/d,1);g.setAttribute('transform',`translate(${a[0]+(b[0]-a[0])*k},${a[1]+(b[1]-a[1])*k})`);
+  if(k<1)requestAnimationFrame(f);else if(++i<p.length-1){t0=0;requestAnimationFrame(f)}else{g.remove();cb&&cb()}};requestAnimationFrame(f)}
+function path(ed,s,d){const adj={};ed.forEach(([a,b])=>{(adj[a]=adj[a]||[]).push(b);(adj[b]=adj[b]||[]).push(a)});const pv={[s]:null},q=[s];
+ while(q.length){const u=q.shift();if(u==d)break;(adj[u]||[]).forEach(v=>{if(!(v in pv)){pv[v]=u;q.push(v)}})}
+ if(!(d in pv))return null;const r=[];for(let u=d;u!==null;u=pv[u])r.unshift(u);return r}
+const LINES=(t,n)=>{const w=String(t).split(' '),L=[];let c='';w.forEach(x=>{if(c&&(c+' '+x).length>n){L.push(c);c=x}else c=c?c+' '+x:x});if(c)L.push(c);return L};
+const WR=(x,y,t,n,z,b,a)=>{const L=LINES(t,n),h=(z||16)*1.3,y0=y-(L.length-1)*h/2;return `<text x="${x}" y="${y0}" text-anchor="${a||'middle'}" font-size="${z||16}"${b?' font-weight="700"':''}>`+L.map((l,i)=>`<tspan x="${x}" dy="${i?h:0}">${esc(l)}</tspan>`).join('')+'</text>'};
+function SORT(items,bins,fin){let k=0;const n=bins.length,gap=16,bw=Math.min(240,(740-(n-1)*gap)/n),x0=(800-(n*bw+(n-1)*gap))/2;
+ const draw=()=>{const it=items[k];svg(`<rect x="30" y="20" width="740" height="150" rx="14" fill="var(--card)" stroke="var(--or)" stroke-width="3"/>`+(it?`<text x="48" y="44" font-size="13">${k+1} dari ${items.length}</text>`+WR(400,100,it[0],60,19):WR(400,95,'✅ Semua sudah dipilah dengan benar',50,21,1))+bins.map((b,j)=>{const x=x0+j*(bw+gap);return `<g data-n="${b[0]}" data-l="${esc(b[2])}" class="pt"><rect x="${x}" y="200" width="${bw}" height="180" rx="16"/><text x="${x+bw/2}" y="262" text-anchor="middle" font-size="40">${b[1]}</text>${WR(x+bw/2,320,b[2],Math.max(10,Math.floor(bw/10)),17,1)}</g>`}).join(''));
+  out.innerHTML='';if(it){const c=E('div');c.style.cssText='border:2px solid var(--or);border-radius:10px;padding:4px 12px 10px;margin:6px 0';c.append(E('p',`<span style="color:var(--mu);font-size:14px">Kartu ${k+1} dari ${items.length}</span><br><b style="font-size:18px">${esc(it[0])}</b>`));const r=E('div');r.style.cssText='display:flex;flex-wrap:wrap;gap:6px';bins.forEach(b=>{const x=E('button',b[1]+' '+esc(b[2]));x.onclick=()=>pilih(b[0]);r.append(x)});c.append(r);out.append(c)}};
+ function pilih(v){if(k>=items.length)return;const it=items[k];
+  if(v==it[1]){k++;draw();say('✅ '+it[2],'ok');if(k>=items.length){if(fin)fin();else ok()}}else say('❌ Belum tepat. '+(it[3]||'Baca lagi kartunya, lalu pilih kotak lain.'),'bad')}
+ draw();say('Baca kartunya, lalu klik kotak yang tepat di gambar atau tombol di bawah kartu.');
+ st.onclick=e=>{const g=e.target.closest('[data-n]');if(g)pilih(g.dataset.n)}}
+const RAW=[
+// ================= W1 Gudang Lama =================
+{t:'1. Data hanya di laptop kasir',d:'Kedai Kopi Senja menyimpan semua data di satu laptop kasir: utang pelanggan, laporan penjualan, daftar pemasok. Bila laptop itu rusak, hilang, atau terkena ransomware, semua data ikut hilang. Inilah masalah "satu titik kegagalan": tidak ada salinan di tempat lain.',m:'Misi: lihat apa yang terjadi saat laptop jatuh, lalu bandingkan bila data juga tersimpan di cloud.',run(){
+ const D=[['📒','Catatan utang pelanggan',5],['📈','Laporan penjualan setahun',4],['🚚','Daftar pemasok dan harga',2],['☕','Resep racikan kopi',1],['🖼️','Foto menu',1]];let jatuh=0,cl=0,a=0,b=0;
+ const draw=()=>svg(nd(150,90,jatuh?'💥':'💻','Laptop kasir')+(cl?ln([186,90],[614,90],1)+nd(650,90,'☁️','Salinan di cloud'):'')+D.map((x,i)=>{const y=160+i*48,hilang=jatuh&&!cl;return `<rect x="60" y="${y}" width="680" height="40" rx="8" fill="${hilang?'var(--g4)':'var(--bg)'}" stroke="var(--bd)"/><text x="78" y="${y+26}" font-size="16">${x[0]} ${x[1]}</text><text x="720" y="${y+26}" text-anchor="end" font-size="15" font-weight="700">${jatuh?(cl?'✅ dipulihkan dari cloud':'❌ hilang · '+x[2]+' hari menyusun ulang'):'tersimpan di laptop'}</text>`}).join(''));
+ draw();
+ B('💥 Laptop jatuh!',()=>{jatuh=1;draw();if(cl){b=1;say('✅ Laptop rusak, tetapi semua data dipulihkan dari salinan di cloud. Kedai bisa buka lagi hari ini dengan laptop pengganti.','ok')}else{a=1;say('❌ Semua data hilang. Menyusun ulang perlu sekitar '+D.reduce((s,x)=>s+x[2],0)+' hari kerja, dan catatan utang pelanggan mungkin tidak bisa dipulihkan sama sekali.','bad')}if(a&&b)ok()});
+ B('☁️ Andai data juga disalin ke cloud',()=>{cl=1;jatuh=0;draw();say('Sekarang setiap perubahan di laptop juga tersimpan di cloud. Coba jatuhkan laptopnya lagi.')});
+ B('↺ Ulangi',()=>{jatuh=0;cl=0;draw();say('')})}},
+{t:'2. Cloud: komputer orang lain yang disewa lewat internet',d:'Cloud adalah komputer, penyimpanan, dan layanan milik penyedia di pusat data, yang Anda sewa dan pakai lewat internet. Karena datanya di pusat data, Anda bisa membukanya dari perangkat mana pun selama tersambung internet. Di cerita ini penyedianya bernama fiktif "Awan Nusantara".',m:'Misi: unggah berkas ke gudang sewaan, lalu buka dari HP dan dari laptop di rumah.',run(){
+ const P={K:[110,300],C:[400,100],H:[690,220],R:[690,360]};let up=0,net=1;const buka=new Set();
+ const draw=()=>svg((net?ln(P.K,P.C,1)+ln(P.C,P.H,1)+ln(P.C,P.R,1):'')+nd(...P.K,'💻','Laptop kedai')+nd(...P.C,'☁️','Awan Nusantara')+nd(...P.H,'📱','HP Sari')+nd(...P.R,'🏠','Laptop di rumah')+(up?`<text x="400" y="175" text-anchor="middle" font-size="15">📄 laporan-oktober.xlsx tersimpan</text>`:'')+(net?'':`<text x="400" y="220" text-anchor="middle" font-size="20" font-weight="700">📵 Internet putus</text>`));
+ draw();
+ B('⬆️ Unggah berkas',()=>{if(!net)return say('Internet putus: berkas belum bisa diunggah.','bad');fly([P.K,P.C],0,()=>{up=1;draw();say('Berkas tersimpan di pusat data Awan Nusantara.','ok')},'📄')});
+ const lihat=(k,n)=>{if(!net)return say('Internet putus: cloud tidak bisa dijangkau. Cloud selalu butuh sambungan internet.','bad');if(!up)return say('Belum ada berkas di cloud. Unggah dulu dari laptop kedai.','bad');fly([P.C,P[k]],0,()=>{buka.add(k);say('✅ Berkas terbuka di '+n+'.','ok');if(buka.size==2)ok()},'📄')};
+ B('📱 Buka dari HP',()=>lihat('H','HP Sari'));B('🏠 Buka dari laptop rumah',()=>lihat('R','laptop di rumah'));
+ B('📵 Putus / sambung internet',()=>{net^=1;draw();say(net?'Internet tersambung lagi.':'Internet putus.')})}},
+{t:'3. Cloud dalam keseharian',d:'Banyak layanan yang Anda pakai setiap hari sebenarnya berjalan di cloud: email di peramban, penyimpanan foto online, streaming film, dan panggilan video. Cirinya: data dan pemrosesannya ada di server penyedia, bukan di perangkat Anda.',m:'Misi: pilah delapan kegiatan menjadi memakai cloud atau tidak.',run(){
+ SORT([
+  ['Membuka email lewat peramban','cl','Email tersimpan di server penyedia dan dibuka lewat internet.'],
+  ['Menghitung dengan kalkulator bawaan HP','no','Kalkulator berjalan di HP sendiri tanpa internet.'],
+  ['Mencadangkan foto HP ke penyimpanan online','cl','Foto disalin ke pusat data penyedia.'],
+  ['Menonton film lewat aplikasi streaming','cl','Film dikirim dari server penyedia.'],
+  ['Membuka berkas dari flashdisk','no','Berkas ada di flashdisk, bukan di server penyedia.'],
+  ['Rapat lewat panggilan video','cl','Suara dan gambar diproses lewat server penyedia.'],
+  ['Bermain gim offline di laptop','no','Gim berjalan seluruhnya di laptop.'],
+  ['Mencatat penjualan di aplikasi kasir berlangganan lewat peramban','cl','Aplikasi dan datanya ada di server penyedia.']
+ ],[['cl','☁️','Memakai cloud'],['no','💻','Tidak memakai cloud']])}},
+{t:'4. Lima ciri cloud',d:'Lembaga standar Amerika Serikat (NIST) menyebut lima ciri cloud. Swalayan: menambah layanan sendiri tanpa perantara. Akses lewat jaringan: dipakai dari mana saja lewat internet. Sumber daya bersama: satu pusat data melayani banyak pelanggan. Elastis: kapasitas naik turun sesuai beban. Terukur: tagihan sesuai pemakaian.',m:'Misi: cocokkan lima kejadian dengan cirinya. Lalu atur jumlah server sepanjang hari agar pesanan lancar tanpa boros.',run(){
+ SORT([
+  ['Sari menambah server sendiri lewat halaman web, tanpa menelepon siapa pun.','sw','Swalayan: pengguna mengatur sendiri kapan saja.'],
+  ['Dimas memantau dasbor kedai dari HP saat mudik.','ak','Akses lewat jaringan: dipakai dari mana saja lewat internet.'],
+  ['Server di pusat data dipakai bergantian oleh ribuan pelanggan.','bs','Sumber daya bersama: penyedia membagi kapasitasnya ke banyak pelanggan.'],
+  ['Saat promo kapasitas dinaikkan, setelah sepi diturunkan lagi.','el','Elastis: kapasitas mengikuti beban.'],
+  ['Tagihan dihitung dari jam pemakaian, seperti meteran listrik.','tu','Terukur: bayar sesuai yang dipakai.']
+ ],[['sw','🖱️','Swalayan'],['ak','🌐','Akses lewat jaringan'],['bs','🏢','Sumber daya bersama'],['el','↕️','Elastis'],['tu','🧾','Terukur']],()=>{
+  const W=[['Pagi',20],['Siang',80],['Sore',40],['Malam',10]],S=W.map(w=>SE(['1','2','3','4'],'4'));S.forEach((s,i)=>{s.setAttribute('aria-label','Jumlah server '+W[i][0]);s.before(E('span',W[i][0]+':'))});
+  const gam=h=>{let x=`<text x="400" y="30" text-anchor="middle" font-size="16" font-weight="700">Satu server melayani 25 pesanan per jam</text>`;W.forEach((w,i)=>{const n=+S[i].value,cx=130+i*180;x+=`<text x="${cx}" y="70" text-anchor="middle" font-size="16" font-weight="700">${w[0]}</text><text x="${cx}" y="95" text-anchor="middle" font-size="15">${w[1]} pesanan/jam</text>`+Array.from({length:n},(_,k)=>`<text x="${cx}" y="${140+k*42}" text-anchor="middle" font-size="30">🖥️</text>`).join('')+(h?`<text x="${cx}" y="330" text-anchor="middle" font-size="15" font-weight="700">${n*25>=w[1]?'✅ lancar':'❌ antre'}</text>`:'')});svg(x+(h||''))};
+  gam();say('✅ Lima ciri sudah dicocokkan. Sekarang atur jumlah server tiap waktu di bawah, lalu tekan Jalankan sehari.','ok');
+  S.forEach(s=>s.onchange=()=>gam());
+  B('▶ Jalankan sehari',()=>{const n=S.map(s=>+s.value),lb=W.filter((w,i)=>n[i]*25<w[1]),tot=n.reduce((a,b)=>a+b,0);
+   gam(`<text x="400" y="390" text-anchor="middle" font-size="17" font-weight="700">Meteran: ${tot} server-jam per blok waktu (minimal yang dibutuhkan: 8)</text>`);
+   if(lb.length)say('❌ Pesanan antre pada: '+lb.map(w=>w[0]).join(', ')+'. Tambah server di waktu itu.','bad');
+   else if(tot>10)say('Pesanan lancar, tetapi boros: server yang menganggur tetap ditagih. Kurangi server di waktu sepi.','bad');
+   else{say('✅ Lancar dan hemat. Inilah elastis dan terukur: kapasitas mengikuti beban, dan tagihan mengikuti pemakaian.','ok');ok()}})})}},
+// ================= W2 Etalase Layanan =================
+{t:'5. IaaS, PaaS, dan SaaS',d:'Bayangkan pizza. IaaS seperti menyewa dapur: penyedia memberi mesin, Anda memasang sistem operasi dan aplikasi sendiri. PaaS seperti pesan antar adonan siap panggang: Anda cukup mengurus aplikasinya. SaaS seperti makan di restoran: aplikasi jadi tinggal dipakai. Di semua model, data dan akun pengguna tetap urusan Anda.',m:'Misi: tentukan siapa yang mengurus setiap lapisan pada tiap model (klik sel untuk mengganti), lalu periksa.',run(){
+ const R=['Gedung, listrik, pendingin','Server dan jaringan','Sistem operasi','Basis data dan runtime','Aplikasi','Data dan akun pengguna'],C=['IaaS','PaaS','SaaS'],E2=[[1,1,1],[1,1,1],[0,1,1],[0,1,1],[0,0,1],[0,0,0]],A=R.map(()=>[0,0,0]);
+ const draw=()=>{let h=C.map((c,j)=>`<text x="${400+j*130}" y="36" text-anchor="middle" font-size="17" font-weight="700">${c}</text>`).join('');
+  R.forEach((r,i)=>{h+=WR(160,72+i*58,r,26,15,1);C.forEach((c,j)=>{h+=`<g data-n="${i}-${j}" data-l="${r} pada ${c}: diurus ${A[i][j]?'penyedia':'kedai'}" class="pt"><rect x="${340+j*130}" y="${50+i*58}" width="120" height="46" rx="10"${A[i][j]?' style="fill:var(--g1)"':''}/><text x="${400+j*130}" y="${79+i*58}" text-anchor="middle" font-size="15">${A[i][j]?'🏢 Penyedia':'☕ Kedai'}</text></g>`})});svg(h)};
+ draw();st.onclick=e=>{const g=e.target.closest('[data-n]');if(!g)return;const [i,j]=g.dataset.n.split('-').map(Number);A[i][j]^=1;draw()};
+ B('🔍 Periksa',()=>{const s=[];R.forEach((r,i)=>C.forEach((c,j)=>{if(A[i][j]!=E2[i][j])s.push(r+' ('+c+')')}));
+  if(!s.length){say('✅ Tepat. Makin ke kanan, makin banyak yang diurus penyedia. Namun data dan akun pengguna selalu urusan Anda.','ok');ok()}else say('Belum tepat ('+s.length+' sel): '+s.slice(0,4).join('; ')+(s.length>4?'; …':'')+'. Ingat analogi pizza di keterangan tahap.','bad')})}},
+{t:'6. Model penerapan: publik, privat, hibrida, komunitas',d:'Cloud publik dipakai bersama banyak pelanggan dari penyedia umum; murah dan cepat dimulai. Cloud privat dipakai satu organisasi saja, misalnya untuk data yang sangat rahasia. Hibrida menggabungkan keduanya. Cloud komunitas dipakai bersama beberapa organisasi dengan kebutuhan serupa.',m:'Misi: pilih model yang paling cocok untuk enam organisasi.',run(){
+ SORT([
+  ['Kedai kecil ingin mulai cepat dan murah, tanpa membeli server.','pub','Cloud publik cocok untuk mulai cepat tanpa modal server.'],
+  ['Kementerian membangun cloud sendiri untuk data rahasia negara.','pri','Data sangat rahasia sering memakai cloud privat.'],
+  ['Rumah sakit: rekam medis di pusat data sendiri, situs informasi pasien di cloud publik.','hib','Gabungan milik sendiri dan publik adalah hibrida.'],
+  ['Beberapa universitas berbagi satu cloud untuk riset bersama.','kom','Beberapa organisasi dengan kebutuhan serupa: cloud komunitas.'],
+  ['Bank menyimpan transaksi inti di cloud miliknya, aplikasi promo di cloud publik.','hib','Sebagian privat, sebagian publik: hibrida.'],
+  ['Usaha rintisan aplikasi kopi menyewa semua layanan dari penyedia umum.','pub','Seluruhnya di penyedia umum: cloud publik.']
+ ],[['pub','🌐','Publik'],['pri','🔐','Privat'],['hib','🔀','Hibrida'],['kom','🤝','Komunitas']])}},
+{t:'7. Tanggung jawab bersama',d:'Di cloud, keamanan dibagi. Penyedia menjaga gedung, listrik, perangkat keras, dan layanannya. Pengguna menjaga data, akun, kata sandi, hak akses, dan pengaturan yang dipilihnya. Ingat dari materi keamanan: MFA dan hak akses minimum tetap tugas Anda, walau datanya di cloud.',m:'Misi: tentukan tanggung jawab siapa untuk enam kejadian.',run(){
+ SORT([
+  ['Listrik di pusat data padam dan genset gagal menyala.','py','Fasilitas fisik pusat data adalah urusan penyedia.'],
+  ['Kata sandi akun cloud seorang staf kedai bocor.','kd','Akun dan kata sandi adalah urusan pengguna.'],
+  ['Staf menghapus daftar pelanggan di aplikasi SaaS.','kd','Isi data dan cara memakainya urusan pengguna, termasuk menyiapkan cadangan.'],
+  ['Hard disk fisik di server penyedia rusak.','py','Perangkat keras adalah urusan penyedia.'],
+  ['Folder foto KTP pelanggan disetel publik oleh staf.','kd','Pengaturan yang dipilih pengguna adalah tanggung jawab pengguna.'],
+  ['Pendingin ruang server di pusat data mati.','py','Fasilitas pusat data urusan penyedia.']
+ ],[['py','🏢','Penyedia (Awan Nusantara)'],['kd','☕','Pengguna (Kedai Senja)']])}},
+{t:'8. Region dan zona ketersediaan',d:'Penyedia punya pusat data di banyak kota, disebut region. Makin dekat region dengan pelanggan, makin kecil waktu tunggunya (latency). Satu region berisi beberapa zona ketersediaan, yaitu pusat data terpisah, agar gangguan di satu tempat tidak menghentikan layanan. Lokasi region juga menentukan di negara mana data disimpan.',m:'Misi: pelanggan Kedai Senja kebanyakan di Surabaya. Pilih region, uji waktu tunggunya, lalu sebar aplikasi ke dua zona dan uji saat satu zona padam.',run(){
+ const RG={Jakarta:[250,250,15,'Indonesia'],Singapura:[110,170,30,'luar negeri'],Tokyo:[620,40,90,'luar negeri'],Frankfurt:[40,40,190,'luar negeri']},U=[470,330];let pil='Frankfurt',dz=0,a=0,b=0;
+ const draw=x=>svg(Object.entries(RG).map(([n,r])=>`<g data-n="${n}" data-l="Region ${n}${n==pil?', dipilih':''}" class="pt"><rect x="${r[0]}" y="${r[1]}" width="120" height="50" rx="10"${n==pil?' style="stroke:var(--ac);stroke-width:5"':''}/><text x="${r[0]+60}" y="${r[1]+31}" text-anchor="middle" font-size="15">🏢 ${n}</text></g>`).join('')+nd(...U,'👥','Pelanggan Surabaya')+(dz?`<rect x="470" y="200" width="300" height="160" rx="14" fill="var(--card)" stroke="var(--bd)" stroke-width="2"/><text x="620" y="230" text-anchor="middle" font-size="15" font-weight="700">Region ${pil}</text><text x="560" y="290" text-anchor="middle" font-size="30">${x=='padam'?'⛔':'🖥️'}</text><text x="560" y="330" text-anchor="middle" font-size="14">Zona A</text><text x="680" y="290" text-anchor="middle" font-size="30">🖥️</text><text x="680" y="330" text-anchor="middle" font-size="14">Zona B</text>`:'')+(x&&x!='padam'?x:''));
+ draw();st.onclick=e=>{const g=e.target.closest('[data-n]');if(!g)return;pil=g.dataset.n;draw();say('Region '+pil+' dipilih.')};
+ B('⏱️ Uji waktu tunggu',()=>{const r=RG[pil],c=[r[0]+60,r[1]+25];draw();fly([U,c,U],0,()=>{const ms=r[2];if(ms<=30){a=1;say(`✅ ${ms} milidetik pulang-pergi: terasa cepat.`+(r[3]=='Indonesia'?' Data juga tetap di Indonesia.':' Ingat, data akan disimpan di luar negeri; periksa aturan pelindungan data (dibahas di tahap 24).'),'ok')}else say(`❌ ${ms} milidetik pulang-pergi: aplikasi terasa lambat bagi pelanggan di Surabaya. Pilih region yang lebih dekat.`,'bad');if(a&&b)ok()},'⏱',.6)});
+ B('🏢 Sebar ke dua zona',()=>{dz=1;draw();say('Aplikasi kini berjalan di dua zona dalam region '+pil+'.')});
+ B('⛔ Zona A padam',()=>{if(!dz)return say('Aplikasi hanya di satu zona: bila zona itu padam, layanan berhenti total. Sebar dulu ke dua zona.','bad');draw('padam');b=1;say('✅ Zona A padam, tetapi Zona B tetap melayani pelanggan.','ok');if(a&&b)ok()})}},
+// ================= W3 Ruang Server Sewaan =================
+{t:"9. Mesin virtual (VM)",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"10. Kontainer",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"11. Serverless (fungsi)",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"12. Memilih ukuran (CPU, RAM) dan harga per jam",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+// ================= W4 Gudang Data =================
+{t:"13. Penyimpanan objek, blok, dan berkas",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"14. Basis data terkelola",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"15. Cadangan di cloud: versi, snapshot, lintas region",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"16. CDN",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+// ================= W5 Hari Promo =================
+{t:"17. Autoscaling",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"18. Load balancer",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"19. Ketersediaan tinggi dan SLA",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"20. Pemantauan dan peringatan",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+// ================= W6 Laporan ke Pemilik =================
+{t:"21. Model biaya dan anggaran",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"22. Konfigurasi aman di cloud",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"23. Strategi migrasi",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"24. Ketergantungan penyedia dan lokasi data",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"25. Layanan AI siap pakai di cloud",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}},
+{t:"26. Perjalanan satu pesanan: dari HP pembeli sampai struk",d:'Tahap ini berada di wilayah berbayar. Buka wilayahnya dengan poin untuk mengakses simulasi, misi, dan pertanyaannya.',m:'',locked:1,run(){window.lockUI&&window.lockUI()}}
+];
+const CORE=new Set([0,1,3,4,5,6,8,10,11,12,14,16,17,18,20,21,22,25]),ORD=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],ST=ORD.map(i=>({...RAW[i],core:CORE.has(i),id:i}));
+const QZ={
+0:['p','Laptop kasir satu-satunya rusak. Apa yang terjadi pada data yang hanya ada di laptop itu?',['Tetap aman di internet','Ikut hilang'],1,'Tanpa salinan di tempat lain, data ikut hilang.'],
+1:['c','Agar berkas di cloud bisa dibuka dari HP, yang dibutuhkan adalah...',['Sambungan internet','Kabel langsung ke laptop kedai','Flashdisk'],0,'Cloud dijangkau lewat internet.'],
+2:['c','Manakah yang memakai cloud?',['Kalkulator bawaan HP','Menonton film lewat aplikasi streaming'],1,'Film dikirim dari server penyedia.'],
+3:['p','Tagihan cloud dihitung dari jam pemakaian. Ciri apa ini?',['Terukur','Swalayan','Sumber daya bersama'],0,'Bayar sesuai pemakaian, seperti meteran listrik.'],
+4:['p','Pada SaaS, siapa yang mengurus aplikasinya?',['Pengguna','Penyedia'],1,'SaaS adalah aplikasi jadi yang dirawat penyedia.'],
+5:['c','Rekam medis di pusat data sendiri, situs informasi di cloud publik. Model ini...',['Hibrida','Privat','Publik'],0,'Gabungan milik sendiri dan publik.'],
+6:['p','Kata sandi akun cloud staf bocor. Tanggung jawab siapa terutama?',['Penyedia','Pengguna'],1,'Akun dan kata sandi adalah urusan pengguna.'],
+7:['c','Mengapa layanan disebar ke dua zona ketersediaan?',['Agar tetap berjalan bila satu zona padam','Agar tagihan nol','Agar tidak perlu internet'],0,'Zona terpisah mengurangi dampak gangguan.'],
+8:null,
+9:null,
+10:null,
+11:null,
+12:null,
+13:null,
+14:null,
+15:null,
+16:null,
+17:null,
+18:null,
+19:null,
+20:null,
+21:null,
+22:null,
+23:null,
+24:null},qa={};
+function showQ(t){const id=ST[I].id,q=QZ[id],bx=$('#qz');if(!q||q[0]!=t||I==ST.length-1)return;
+ const dr=()=>{const a=qa[id];bx.innerHTML=`<p><b>${t=='p'?'🔮 Prediksi dulu, lalu buktikan di simulasi:':'🧠 Cek pemahaman:'}</b></p><p>${q[1]}</p>`;
+  q[2].forEach((o,k)=>{const b=E('button',o);b.className='o'+(a&&k==q[3]?' good':a&&k==a.c?' bad':'');b.onclick=()=>{if(!qa[id]){qa[id]={c:k,ok:k==q[3]};dr();const v=Object.values(qa);$('#sc').textContent=v.filter(x=>x.ok).length+'/'+v.length;save()}};bx.append(b)});
+  if(a)bx.append(E('p',(a.ok?'✅ Tepat. ':'❌ Belum tepat. ')+q[4]))};dr()}
+const PH=[['1. Dasar cloud',[0,1,2,3]],['2. Jenis layanan',[4,5,6,7]],['3. Komputasi',[8,9,10,11]],['4. Penyimpanan dan data',[12,13,14,15]],['5. Skala dan keandalan',[16,17,18,19]],['6. Biaya, keamanan, migrasi',[20,21,22,23,24,25]]];
+const NV=$('#nav'),NB=[],PHN=[];ST.forEach((s,i)=>{PHN[i]=PH.find(p=>p[1].includes(s.id))[0]});PH.forEach(([n,ids],gi)=>{const g=E('div');g.className='ng ng'+(gi+1);g.setAttribute('role','group');g.setAttribute('aria-label','Kelompok '+n);const h=E('span');h.className='gh';h.textContent=n;g.append(h);const w=E('div');w.className='gb';ids.forEach(id=>{const i=ST.findIndex(x=>x.id==id);const b=E('button',i+1);b.title=s_t(i);b.onclick=()=>go(i);NB[i]=b;w.append(b)});g.append(w);NV.append(g)});function s_t(i){return ST[i].t.replace(/^\d+\. /,'')}
+function nxUpd(){const nx=$('#nx'),last=I==ST.length-1;nx.textContent=last?'Selesai ✓':'Lanjut →';nx.disabled=last&&!done[I];if(last&&!done[I])nx.title='Selesaikan simulasi dulu';else nx.removeAttribute('title')}
+function upd(){nxUpd();NB.forEach((b,i)=>{b.className=(i==I?'cur ':'')+(done[i]?'dn ':'')+(ST[i].core?'':'dp');b.textContent=done[i]?'✓':(ST[i].locked?'🔒':i+1);b.setAttribute('aria-label',`Tahap ${i+1}: ${ST[i].t.replace(/^\d+\. /,'')}${done[i]?' (selesai)':''}${ST[i].core?'':' (pendalaman)'}${ST[i].locked?' (terkunci)':''}`);b.setAttribute('aria-current',i==I?'step':'false')});$('#bar i').style.width=Object.keys(done).length/ST.length*100+'%';save();if(typeof gUpd=='function')gUpd()}
+function go(i){if(i<0||i>=ST.length)return;TK++;I=i;st.onclick=null;st.innerHTML='';ctl.innerHTML=out.innerHTML='';say('');const s=ST[i];$('#tt').textContent=(i+1)+'. '+s.t.replace(/^\d+\. /,'');$('#dd').textContent=s.d;$('#lv').textContent=PHN[i]+' · '+(s.core?'● Tahap inti · sekitar 4 menit':'○ Pendalaman (opsional) · sekitar 5 menit');$('#mm').textContent=s.m;$('#mm').className='mi'+(done[i]?' done':'');$('#pv').disabled=i==0;$('#qz').innerHTML='';s.run();upd();showQ('p');if(done[i])showQ('c');if(typeof gAfterGo=='function')gAfterGo()}
+$('#pv').onclick=()=>go(I-1);$('#nx').onclick=()=>{if(I==ST.length-1){if(!done[I])return;if(typeof window.gSelesai=='function')window.gSelesai();else $('#sm').click();return}go(I+1)};
+st.addEventListener('keydown',e=>{if((e.key=='Enter'||e.key==' ')&&e.target.dataset&&e.target.dataset.k){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}))}});
+let KEY=null,gm={seen:{},inc:{}},SV={};
+function payload(){return{v:2,d:Object.fromEntries(Object.keys(done).map(p=>[ST[p].id,1])),q:qa,ci:ST[I].id,g:gm}}
+function save(){if(!KEY)return;const p=payload();try{localStorage.setItem(KEY,JSON.stringify(p))}catch(e){}if(window.cloudSave)window.cloudSave(p)}
+function restore(sv){for(const k in done)delete done[k];for(const k in qa)delete qa[k];gm={seen:{},inc:{}};sv=sv||{};
+ Object.keys(sv.d||{}).map(Number).forEach(id=>{const p=ST.findIndex(x=>x.id==id);if(p>=0)done[p]=1});Object.assign(qa,sv.q||{});if(sv.g)gm={seen:sv.g.seen||{},inc:sv.g.inc||{}};
+ const v=Object.values(qa);$('#sc').textContent=v.filter(x=>x.ok).length+'/'+v.length;return sv}
+document.addEventListener('visibilitychange',()=>{if(document.hidden){save();if(window.cloudFlush)window.cloudFlush()}});window.addEventListener('pagehide',()=>{if(window.cloudFlush)window.cloudFlush()});
+let rt=0;$('#rs').onclick=function(){if(!rt){rt=1;this.textContent='Yakin? Klik lagi untuk menghapus';setTimeout(()=>{rt=0;this.textContent='Mulai ulang kemajuan'},4000);return}
+ for(const k in done)delete done[k];for(const k in qa)delete qa[k];gm={seen:{},inc:{}};if(typeof gReset=='function')gReset();rt=0;this.textContent='Mulai ulang kemajuan';$('#sc').textContent='0/0';go(0)};
+const OV=$('#ov'),OB=$('#ovb'),OT=$('#ovt');let lastF=null;
+function openOv(t,fn){lastF=document.activeElement;OT.textContent=t;OB.innerHTML='';OB.style.cssText='';fn(OB);OV.hidden=false;$('#ovx').focus()}
+function closeOv(){OV.hidden=true;if(lastF&&lastF.focus)lastF.focus()}
+$('#ovx').onclick=closeOv;OV.addEventListener('click',e=>{if(e.target===OV)closeOv()});
+document.addEventListener('keydown',e=>{if(OV.hidden)return;if(e.key=='Escape')return closeOv();if(e.key=='Tab'){const f=[...OV.querySelectorAll('button,input,textarea')].filter(x=>!x.disabled);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement==a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement==z){e.preventDefault();a.focus()}}});
+
+const nm=p=>ST[p].t.replace(/^\d+\. /,''),pos=id=>ST.findIndex(s=>s.id==id);
+function sumData(){const v=Object.values(qa);return{tot:ST.length,dn:Object.keys(done).length,core:ST.filter(s=>s.core).length,cd:ST.filter((s,i)=>s.core&&done[i]).length,sc:v.filter(x=>x.ok).length,nq:v.length,
+ redo:ST.map((s,i)=>i).filter(i=>(qa[ST[i].id]&&!qa[ST[i].id].ok)||(ST[i].core&&!done[i])).map(i=>(i+1)+'. '+nm(i))}}
+function sumText(){const d=sumData(),L=['Ringkasan Belajar Teknologi Cloud (Petualangan Cloud Kedai Senja)'];{const P=window.cloudProfil&&window.cloudProfil();if(P&&P.nama)L.push('Nama: '+P.nama,'Email: '+(P.email||'-'))}
+ L.push('Tanggal: '+new Date().toLocaleString('id-ID'),`Tahap selesai: ${d.dn}/${d.tot} (inti ${d.cd}/${d.core})`,`Skor pertanyaan: ${d.sc}/${d.nq}`);if(typeof gSum=='function')L.push(...gSum());
+ PH.forEach(([n,ids])=>{L.push('',n);ids.forEach(id=>{const p=pos(id);L.push(`  ${done[p]?'[v]':'[ ]'} ${p+1}. ${nm(p)}${ST[p].core?'':' (pendalaman)'}${qa[id]?(qa[id].ok?' - pertanyaan benar':' - pertanyaan salah'):''}`)})});
+ L.push('','Perlu diulang: '+(d.redo.join('; ')||'tidak ada'));return L.join('\n')}
+$('#sm').onclick=()=>openOv('Ringkasan hasil',b=>{const d=sumData();
+ const prog=E('p',`<b>${d.dn}/${d.tot}</b> tahap selesai (inti <b>${d.cd}/${d.core}</b>) · skor pertanyaan <b>${d.sc}/${d.nq}</b>${typeof gLine=='function'?' · '+esc(gLine()):''}`);
+ const ph=E('p',PH.map(([n,ids])=>`${esc(n)}: <b>${ids.filter(id=>done[pos(id)]).length}/${ids.length}</b>`).join(' · '));
+ const rd=E('p',d.redo.length?'<b>Perlu diulang:</b> '+d.redo.map(esc).join('; '):'<b>Semua tahap inti selesai dan semua pertanyaan benar.</b>');
+ const ta=E('textarea');ta.readOnly=true;ta.rows=12;ta.setAttribute('aria-label','Teks ringkasan');ta.style.cssText='width:100%;margin-top:8px;font:13px/1.4 ui-monospace,Consolas,monospace;background:var(--bg);color:var(--tx);border:2px solid var(--bd);border-radius:10px;padding:8px';
+ ta.value=sumText();
+ const cp=E('button','📋 Salin ringkasan');cp.style.marginTop='8px';
+ cp.onclick=()=>{ta.select();const ok2=()=>{cp.textContent='✅ Tersalin'},bad2=()=>{cp.textContent='Tekan Ctrl+C untuk menyalin'};
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(ok2,()=>{try{document.execCommand('copy')?ok2():bad2()}catch(e){bad2()}})}else{document.execCommand('copy')?ok2():bad2()}}catch(e){bad2()}};
+ b.append(prog,ph,rd,ta,cp)});
+const GL=[['Cloud (komputasi awan)','Komputer, penyimpanan, dan layanan milik penyedia di pusat data yang disewa dan dipakai lewat internet.'],['Pusat data','Gedung berisi banyak server beserta listrik, pendingin, dan jaringannya.'],['Penyedia cloud','Perusahaan yang menyewakan layanan cloud. Di aplikasi ini memakai nama fiktif Awan Nusantara.'],['Swalayan','Pengguna menambah atau mengurangi layanan sendiri tanpa perantara.'],['Elastis','Kapasitas dapat naik dan turun mengikuti beban.'],['Terukur','Pemakaian diukur dan ditagih sesuai yang dipakai.'],['IaaS','Infrastructure as a Service: menyewa mesin; sistem operasi dan aplikasi diurus pengguna.'],['PaaS','Platform as a Service: landasan siap pakai; pengguna cukup mengurus aplikasinya.'],['SaaS','Software as a Service: aplikasi jadi yang tinggal dipakai lewat internet.'],['Cloud publik','Cloud dari penyedia umum yang dipakai banyak pelanggan dengan data terpisah.'],['Cloud privat','Cloud yang dipakai satu organisasi saja.'],['Cloud hibrida','Gabungan cloud privat atau milik sendiri dengan cloud publik.'],['Cloud komunitas','Cloud yang dipakai bersama beberapa organisasi dengan kebutuhan serupa.'],['Tanggung jawab bersama','Pembagian tugas keamanan: penyedia menjaga fasilitas dan layanan, pengguna menjaga data, akun, dan pengaturan.'],['Region','Lokasi kota atau negara tempat pusat data penyedia berada.'],['Zona ketersediaan','Pusat data terpisah di dalam satu region agar gangguan di satu tempat tidak menghentikan layanan.'],['Latency (waktu tunggu)','Waktu tempuh data pulang-pergi, diukur dalam milidetik.'],['Virtualisasi','Teknik membagi satu server fisik menjadi beberapa mesin virtual.'],['Mesin virtual (VM)','Komputer virtual dengan sistem operasi sendiri yang berjalan di server fisik.'],['Kontainer','Paket aplikasi beserta kebutuhannya yang berbagi inti sistem operasi; ringan dan cepat menyala.'],['Serverless','Menjalankan fungsi kecil hanya saat dipanggil dan ditagih per pemakaian.'],['CPU dan RAM','CPU memproses perintah; RAM adalah memori kerja. Keduanya menentukan ukuran VM.'],['Penyimpanan objek','Penyimpanan untuk berkas seperti foto dan video yang diakses lewat internet.'],['Penyimpanan blok','Penyimpanan yang berperan seperti hard disk untuk VM.'],['Penyimpanan berkas','Folder bersama yang dibuka beberapa orang sekaligus.'],['Basis data terkelola','Basis data yang server, pembaruan, dan cadangannya diurus penyedia.'],['Riwayat versi','Fitur yang menyimpan versi lama berkas sehingga dapat dikembalikan.'],['Snapshot','Potret isi disk pada satu waktu untuk dipulihkan nanti.'],['Salinan lintas region','Salinan data di region lain sebagai cadangan bila satu region terganggu.'],['CDN','Jaringan server yang menyimpan salinan konten di dekat pengguna agar lebih cepat.'],['Autoscaling','Penambahan dan pengurangan server secara otomatis sesuai beban.'],['Load balancer','Pembagi permintaan ke beberapa server yang mengalihkan dari server yang mati.'],['SLA','Perjanjian tingkat layanan: janji penyedia tentang persen waktu layanan tersedia.'],['Pemantauan','Pengukuran keadaan server, misalnya CPU, untuk mengirim peringatan bila melewati ambang.'],['Biaya data keluar','Biaya untuk data yang dikirim dari cloud ke internet; sering terlupa.'],['Komitmen jangka panjang','Kontrak pemakaian, misalnya satu tahun, dengan harga lebih murah daripada per jam.'],['Anggaran dan peringatan tagihan','Batas biaya yang memicu pemberitahuan sebelum tagihan melewatinya.'],['Kunci akses (API key)','Rahasia untuk aplikasi mengakses akun cloud. Bila bocor, harus segera dicabut.'],['Akun utama (root)','Akun dengan kuasa penuh atas akun cloud; dilindungi MFA dan tidak dipakai sehari-hari.'],['Migrasi','Pemindahan aplikasi dan data ke cloud atau antarpenyedia.'],['Ketergantungan penyedia','Sulit dan mahal berpindah karena memakai banyak fitur khusus satu penyedia (vendor lock-in).'],['Layanan AI siap pakai','Layanan cloud yang menyediakan kemampuan AI, misalnya menjawab pertanyaan, tanpa membangun model sendiri.'],['MFA','Masuk dengan dua bukti atau lebih dari jenis berbeda (dibahas di materi keamanan).'],['UU PDP','Undang-Undang No. 27 Tahun 2022 tentang Pelindungan Data Pribadi.']].sort((a,b)=>a[0].localeCompare(b[0],'id'));
+$('#gl').onclick=()=>openOv('Glosarium',b=>{const f=E('input');f.type='search';f.placeholder='Cari istilah...';f.setAttribute('aria-label','Cari istilah');f.style.width='100%';const l=E('dl');
+ const r=()=>{const q=f.value.toLowerCase();l.innerHTML=GL.filter(x=>(x[0]+' '+x[1]).toLowerCase().includes(q)).map(x=>`<dt style="font-weight:700;margin-top:8px">${esc(x[0])}</dt><dd style="margin:0 0 0 12px">${esc(x[1])}</dd>`).join('')||'<p>Istilah tidak ditemukan.</p>'};f.oninput=r;r();b.append(f,l)});
+go(0);
+</script>
+<script>
+(()=>{
+const REG=[
+{n:'Dasar cloud',pl:'Gudang Lama',ic:'📦',bd:'Penyelamat Data',bdd:'Menyelesaikan semua tahap inti wilayah Dasar cloud.',
+ st:'Kedai Kopi Senja milik Sari makin ramai, tetapi semua catatannya masih di satu laptop kasir yang sudah tua. Dimas, teman Sari yang bekerja di bidang TI, mengajak Anda membantu. "Kita mulai dari gudang lama ini," katanya. Tugas Anda: pahami risiko data di satu tempat, kenali apa itu cloud, dan lima cirinya.',
+ inc:{t:'Laptop kasir rusak, catatan utang hilang',s:'Pagi ini laptop kasir tidak mau menyala. Sari panik: catatan utang pelanggan ada di sana. Jalankan alat diagnosis, lalu tentukan diagnosis.',
+  tools:[['Cek laptop','Hard disk laptop rusak dan tidak terbaca.'],['Cek salinan lain','Tidak ada salinan di flashdisk, cloud, atau komputer lain.'],['Tanya kebiasaan Sari','Semua catatan selalu disimpan di laptop itu saja.'],['Cek internet kedai','Internet berjalan normal.']],
+  o:['Internet kedai bermasalah','Data hanya di satu tempat tanpa salinan','Aplikasi kasir kedaluwarsa','Terlalu banyak pelanggan'],a:1,
+  x:'Masalahnya bukan laptop rusak, karena perangkat pasti suatu saat rusak, melainkan data yang hanya ada di satu tempat. Perbaikan: simpan data di cloud sehingga tersalin otomatis dan dapat dibuka dari perangkat lain.'}},
+{n:'Jenis layanan',pl:'Etalase Layanan',ic:'🛍️',bd:'Pemilih Layanan',bdd:'Menyelesaikan semua tahap inti wilayah Jenis layanan.',
+ st:'Dimas membuka katalog Awan Nusantara. Isinya membingungkan: IaaS, PaaS, SaaS, publik, privat, region. "Seperti memilih cara makan pizza," katanya sambil tersenyum. Tugas Anda: kenali jenis layanan dan model penerapan, serta pahami bagian mana yang tetap menjadi tanggung jawab kedai.',
+ inc:{t:'Daftar pelanggan di aplikasi SaaS terhapus',s:'Daftar pelanggan di aplikasi kasir berlangganan hilang. Sari menghubungi penyedia, tetapi penyedia menolak bertanggung jawab. Jalankan alat diagnosis, lalu tentukan diagnosis.',
+  tools:[['Cek catatan aktivitas','Akun staf kasir menghapus semua data pelanggan kemarin pukul 16.20.'],['Cek status penyedia','Tidak ada gangguan di layanan penyedia.'],['Cek pengaturan cadangan','Fitur ekspor dan cadangan data di aplikasi tidak pernah diaktifkan.'],['Tanya staf kasir','Ia mengira tombol itu untuk merapikan tampilan.']],
+  o:['Penyedia lalai menjaga server','Penghapusan oleh staf dan tidak ada cadangan: tanggung jawab kedai','Internet kedai terputus','Aplikasi diserang dari luar'],a:1,
+  x:'Penyedia SaaS menjaga aplikasinya, tetapi isi data, akun staf, dan cadangan tetap tanggung jawab pengguna. Perbaikan: batasi hak staf untuk menghapus, aktifkan cadangan atau ekspor berkala, dan latih staf.'}},
+{n:'Komputasi',pl:'Ruang Server Sewaan',ic:'🖥️',bd:'Penakar Kapasitas',bdd:'Menyelesaikan semua tahap inti wilayah Komputasi.',
+ st:'Kedai Senja meluncurkan aplikasi pesanan. Dimas menyewa ruang server di Awan Nusantara. "Kita tidak membeli server; kita menyewa sebanyak yang perlu," katanya. Tugas Anda: pahami mesin virtual, kontainer, dan serverless, lalu pilih ukuran yang pas.',
+ inc:{t:"Aplikasi pesanan lambat setiap jam makan siang"}},
+{n:'Penyimpanan dan data',pl:'Gudang Data',ic:'🗄️',bd:'Penjaga Gudang',bdd:'Menyelesaikan semua tahap inti wilayah Penyimpanan dan data.',
+ st:'Data kedai kini tersebar: foto menu, laporan, pesanan, dan dokumen staf. Dimas mengajak Anda ke gudang data Awan Nusantara. "Tiap jenis data punya tempatnya," katanya. Tugas Anda: pilih jenis penyimpanan, kenali basis data terkelola, siapkan cadangan khas cloud, dan percepat kiriman foto.',
+ inc:{t:"Menu dan foto produk tertimpa versi salah"}},
+{n:'Skala dan keandalan',pl:'Hari Promo',ic:'🎉',bd:'Penjinak Lonjakan',bdd:'Menyelesaikan semua tahap inti wilayah Skala dan keandalan.',
+ st:'Kedai Senja mengadakan promo besar 10.10. Ribuan pembeli diperkirakan datang sekaligus. "Hari ini aplikasi tidak boleh tumbang," kata Sari. Tugas Anda: siapkan autoscaling dan load balancer, pahami angka SLA, dan pasang pemantauan.',
+ inc:{t:"Promo 10.10: aplikasi tumbang 2 jam"}},
+{n:'Biaya, keamanan, migrasi',pl:'Laporan ke Pemilik',ic:'📋',bd:'Penasihat Cloud',bdd:'Menyelesaikan semua tahap inti wilayah Biaya, keamanan, migrasi.',
+ st:'Akhir bulan, Sari meminta laporan: berapa biayanya, apakah datanya aman, dan apa langkah berikutnya. Tugas Anda: kendalikan biaya, rapikan pengaturan keamanan, pilih strategi migrasi, timbang risiko ketergantungan dan layanan AI, lalu ikuti perjalanan satu pesanan.',
+ inc:{t:"Tagihan cloud bulan ini 5 kali lipat"}}
+];
+const RANKS=[[0,'Kasir Digital','☕'],[60,'Pengelola Cloud Junior','🌤️'],[150,'Pengelola Cloud','☁️'],[260,'Arsitek Cloud Junior','🧭'],[380,'Arsitek Cloud','🏗️'],[470,'Konsultan Cloud','🏛️']];
+const RGI=ST.map(s=>PH.findIndex(p=>p[1].includes(s.id)));
+const regPos=k=>PH[k][1].map(id=>ST.findIndex(x=>x.id==id));
+const regCore=k=>regPos(k).filter(p=>ST[p].core);
+const coreDone=k=>regCore(k).every(p=>done[p]);
+const calc=()=>{let a=0,q=0,c=0;ST.forEach((s,i)=>{if(done[i])a+=s.core?10:15});Object.values(qa).forEach(x=>{if(x.ok)q+=5});
+ REG.forEach((r,k)=>{const g=gm.inc[k];if(g&&g.s)c+=15+(g.t==1?5:0)});return{a,q,c,xp:a+q+c}};
+const rankIdx=xp=>{let r=0;RANKS.forEach((x,i)=>{if(xp>=x[0])r=i});return r};
+const badgeSet=()=>{const s=REG.map((r,k)=>coreDone(k));s.push(ST.every((x,i)=>done[i]));return s};
+const BADGE_ALL=['Penjelajah Sejati','Menyelesaikan seluruh 26 tahap, termasuk pendalaman.'];
+let last=null,started=false;
+window.gLine=()=>{const c=calc(),r=RANKS[rankIdx(c.xp)];return r[2]+' '+r[1]+' · '+c.xp+' XP'};
+window.gSum=()=>{const c=calc(),r=RANKS[rankIdx(c.xp)],b=badgeSet(),nm=[];REG.forEach((x,k)=>{if(b[k])nm.push(x.bd)});if(b[6])nm.push(BADGE_ALL[0]);
+ return['Pangkat: '+r[1]+' ('+c.xp+' XP)','Lencana: '+(nm.join(', ')||'belum ada'),'Insiden terselesaikan: '+REG.filter((x,k)=>gm.inc[k]&&gm.inc[k].s).length+'/'+REG.length]};
+const tst=$('#tst');let tt=0;
+function toast(t){tst.textContent=t;tst.hidden=false;clearTimeout(tt);tt=setTimeout(()=>{tst.hidden=true},4500)}
+window.gUpd=()=>{const c=calc(),ri=rankIdx(c.xp),r=RANKS[ri],n=RANKS[ri+1],b=badgeSet();
+ $('#gr').textContent=r[2]+' '+r[1];$('#gx').textContent=c.xp+' XP'+(n?' · pangkat berikutnya '+n[1]+' di '+n[0]+' XP':' · pangkat tertinggi');
+ $('#gbar i').style.width=(n?(c.xp-r[0])/(n[0]-r[0])*100:100)+'%';
+ const k=RGI[I];$('#gw').textContent='📍 '+REG[k].ic+' '+REG[k].pl;
+ if(last){const m=[];if(c.xp>last.xp)m.push('+'+(c.xp-last.xp)+' XP');b.forEach((v,i)=>{if(v&&!last.b[i])m.push('🏅 Lencana baru: '+(i<6?REG[i].bd:BADGE_ALL[0]))});if(ri>last.r)m.push('🎉 Naik pangkat: '+r[1]+'!');if(m.length)toast(m.join(' · '))}
+ last={xp:c.xp,r:ri,b}};
+window.gReset=()=>{last=null};
+function story(k){gm.seen[k]=1;save();const R=REG[k];
+ openOv('📍 '+R.ic+' '+R.pl+' (wilayah '+(k+1)+' dari 6)',b=>{b.style.cssText='border-left:8px solid var(--gb'+(k+1)+');padding-left:12px';
+  b.append(E('p',esc(R.st)),E('p','<b>Tahap di wilayah ini:</b> '+regPos(k).map(p=>(p+1)+'. '+esc(nm(p))).join('; ')+'.'),E('p','⚡ Setelah semua tahap inti selesai, insiden <b>"'+esc(R.inc.t)+'"</b> menanti Anda.'));
+  const o=E('button','Mulai bertugas');o.onclick=closeOv;b.append(o)})}
+window.gAfterGo=()=>{if(!started)return;gUpd();devRow();const k=RGI[I];if(!gm.seen[k])story(k)};
+function incident(k){const R=REG[k];
+ if(!coreDone(k)){openOv('⚡ Insiden terkunci',b=>{const n=regCore(k).filter(p=>!done[p]).length;b.append(E('p','Insiden <b>"'+esc(R.inc.t)+'"</b> terbuka setelah semua tahap inti wilayah <b>'+esc(R.pl)+'</b> selesai. Masih ada <b>'+n+'</b> tahap inti yang belum selesai.'));
+  const o=E('button','Mengerti');o.onclick=closeOv;b.append(o)});return}
+ const g=gm.inc[k]||(gm.inc[k]={t:0,s:0}),used=new Set(),I2=R.inc&&R.inc.tools?R.inc:(window.__INC&&window.__INC[k]);
+ if(!I2){openOv('⚡ Insiden belum tersedia',b=>{b.append(E('p','Materi wilayah ini belum termuat. Muat ulang halaman setelah wilayahnya terbuka.'));const o=E('button','Mengerti');o.onclick=closeOv;b.append(o)});return}
+ 
+ openOv('⚡ '+I2.t,b=>{
+  b.append(E('p',esc(I2.s)),E('p','<b>1. Jalankan alat diagnosis</b> (boleh lebih dari satu):'));
+  const tw=E('div');tw.style.cssText='display:flex;flex-wrap:wrap;gap:8px';const outp=E('div');outp.setAttribute('aria-live','polite');outp.style.cssText='margin:8px 0;font:14px/1.4 ui-monospace,Consolas,monospace';
+  const showT=i=>{used.add(i);const d=E('p');d.style.cssText='background:var(--bg);padding:6px 10px;border-radius:8px;margin:4px 0';d.innerHTML='<b>'+esc(I2.tools[i][0])+':</b> '+esc(I2.tools[i][1]);outp.append(d)};
+  I2.tools.forEach((t,i)=>{const x=E('button',esc(t[0]));x.onclick=()=>{if(used.has(i))return;showT(i)};tw.append(x)});
+  const res=E('p');res.setAttribute('aria-live','polite');res.style.fontWeight='600';
+  b.append(tw,outp,E('p','<b>2. Tentukan diagnosis:</b>'));
+  const opts=I2.o.map((t,j)=>{const x=E('button',esc(t));x.className='o';x.onclick=()=>pick(j);b.append(x);return x});b.append(res);
+  function fin(){opts.forEach((x,j)=>{x.disabled=true;if(j==I2.a)x.classList.add('good')})}
+  function pick(j){if(g.s)return;g.t++;
+   if(j==I2.a){g.s=1;fin();const xp=15+(g.t==1?5:0);res.innerHTML='✅ Tepat! +'+xp+' XP'+(g.t==1?' (bonus percobaan pertama)':'')+'. '+esc(I2.x);save();upd()}
+   else{opts[j].disabled=true;opts[j].classList.add('bad');res.textContent=used.size?'❌ Belum tepat. Baca lagi hasil alat yang Anda jalankan, lalu coba diagnosis lain.':'❌ Belum tepat. Jalankan paling sedikit satu alat diagnosis dahulu, lalu pertimbangkan hasilnya.';save()}}
+  if(g.s){I2.tools.forEach((t,i)=>showT(i));fin();res.innerHTML='✅ Sudah selesai. '+esc(I2.x)}
+ })}
+$('#ib').onclick=()=>incident(RGI[I]);
+$('#sb').onclick=()=>story(RGI[I]);
+$('#bb').onclick=()=>openOv('🏆 Pangkat dan lencana',b=>{const c=calc(),ri=rankIdx(c.xp),r=RANKS[ri],n=RANKS[ri+1],bs=badgeSet();
+ b.append(E('p','<b style="font-size:20px">'+r[2]+' '+esc(r[1])+'</b> · <b>'+c.xp+' XP</b>'+(n?'<br>Pangkat berikutnya: '+n[2]+' '+esc(n[1])+' di '+n[0]+' XP (kurang '+(n[0]-c.xp)+' XP).':'<br>Pangkat tertinggi tercapai.')),
+  E('p','Sumber XP: tahap selesai <b>'+c.a+'</b> (inti 10, pendalaman 15) · pertanyaan benar pada percobaan pertama <b>'+c.q+'</b> (5 per soal) · insiden <b>'+c.c+'</b> (15, bonus 5 bila benar pada percobaan pertama). Jawaban yang salah tidak mengurangi XP, tetapi juga tidak menambah.'));
+ REG.forEach((R,k)=>{const d=E('div');d.style.cssText='background:var(--g'+(k+1)+');border:2px solid var(--gb'+(k+1)+');border-radius:10px;padding:8px 12px;margin:8px 0;color:var(--tx)';
+  const g=gm.inc[k],left=regCore(k).filter(p=>!done[p]).length;
+  d.innerHTML='<b>'+(bs[k]?'🏅 '+esc(R.bd):'🔒 '+esc(R.bd))+'</b> · '+R.ic+' '+esc(R.pl)+'<br>'+(bs[k]?'Diraih.':'Selesaikan '+left+' tahap inti lagi.')+' ⚡ Insiden: '+(g&&g.s?'selesai':(coreDone(k)?'siap dikerjakan':'terkunci'));d.setAttribute('role','group');b.append(d)});
+ const d=E('div');d.style.cssText='border:2px dashed var(--bd);border-radius:10px;padding:8px 12px;margin:8px 0';d.innerHTML='<b>'+(bs[6]?'🌟 ':'🔒 ')+BADGE_ALL[0]+'</b><br>'+BADGE_ALL[1];b.append(d)});
+// ---------- layar sambutan: dikelola cloud.js ----------
+const WL=$('#wl'),WB=$('#wlb');
+function setInert(v){['header','main'].forEach(s=>{const e=document.querySelector(s);if(e)e.inert=v})}
+window.gSetInert=setInert;
+window.gBegin=function(nama){WL.hidden=true;setInert(false);started=true;$('#gp').textContent='👤 '+(nama||'Peserta');gUpd();devRow();const k=RGI[I];if(!gm.seen[k])story(k);else{const f=$('#nav .cur')||$('#nx');f&&f.focus&&f.focus()}};
+window.gStory=story;window.gRGI=RGI;window.gRegions=REG;
+window.gReady=true;
+WL.addEventListener('keydown',e=>{if(WL.hidden||e.key!='Tab')return;const f=[...WL.querySelectorAll('button,input')].filter(x=>!x.disabled);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement==a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement==z){e.preventDefault();a.focus()}});
+
+const SK='stroke="var(--tx)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"';
+const DV={
+pc:['Laptop kedai','Perangkat kerja kedai. Data yang hanya ada di sini berisiko hilang.',`<rect x="30" y="10" width="60" height="38" rx="4" fill="var(--bg)" ${SK}/><rect x="36" y="16" width="48" height="26" fill="var(--ac)" fill-opacity=".3"/><path d="M20 52h80l-6 8H26z" fill="var(--bd)" ${SK}/>`],
+cloud:['Cloud','Layanan milik penyedia di pusat data yang dipakai lewat internet.',`<path d="M30 54h62a14 14 0 0 0 0-28 22 22 0 0 0-42-6 16 16 0 0 0-20 34z" fill="var(--ac)" fill-opacity=".25" ${SK}/>`],
+server:['Server fisik','Komputer di pusat data yang dibagi menjadi beberapa mesin virtual.',[8,28,48].map(y=>`<rect x="18" y="${y}" width="84" height="16" rx="3" fill="var(--bg)" ${SK}/><circle cx="28" cy="${y+8}" r="2.5" fill="#2f9e55"/>`).join('')],
+vm:['Mesin virtual','Komputer virtual dengan sistem operasi sendiri.',`<rect x="14" y="10" width="92" height="52" rx="6" fill="var(--bg)" ${SK}/>`+[0,1,2].map(k=>`<rect x="${22+k*28}" y="18" width="22" height="36" rx="3" fill="var(--ac)" fill-opacity=".3" stroke="var(--tx)" stroke-width="1.5"/>`).join('')],
+kontainer:['Kontainer','Paket aplikasi yang ringan dan cepat menyala.',`<rect x="16" y="22" width="88" height="36" rx="3" fill="#e0752a" fill-opacity=".35" ${SK}/>`+[0,1,2,3,4,5].map(k=>`<path d="M${28+k*14} 26v28" stroke="var(--tx)" stroke-width="1.5"/>`).join('')],
+fungsi:['Fungsi serverless','Kode kecil yang berjalan hanya saat dipanggil.',`<path d="M66 6L36 40h20l-6 26 32-36H62z" fill="#d19a00" fill-opacity=".5" ${SK}/>`],
+db:['Basis data','Tempat data terstruktur seperti pesanan dan pelanggan.',`<ellipse cx="60" cy="16" rx="30" ry="8" fill="var(--bg)" ${SK}/><path d="M30 16v38c0 4 13 8 30 8s30-4 30-8V16" fill="var(--bg)" ${SK}/><path d="M30 34c0 4 13 8 30 8s30-4 30-8" fill="none" ${SK}/>`],
+cdn:['CDN','Server-server dekat pengguna yang menyimpan salinan konten.',`<circle cx="60" cy="36" r="26" fill="var(--ac)" fill-opacity=".15" ${SK}/><path d="M34 36h52M60 10c-12 14-12 38 0 52M60 10c12 14 12 38 0 52" fill="none" ${SK}/>`+[[30,14],[92,18],[88,58],[28,56]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#2f9e55"/>`).join('')],
+lb:['Load balancer','Pembagi permintaan ke beberapa server.',`<rect x="44" y="26" width="32" height="20" rx="4" fill="var(--or)" fill-opacity=".3" ${SK}/><path d="M10 36h34M76 36l30-22M76 36h30M76 36l30 22" fill="none" ${SK}/>`],
+dompet:['Tagihan','Biaya cloud mengikuti pemakaian: server, penyimpanan, data keluar.',`<rect x="22" y="12" width="76" height="50" rx="6" fill="var(--bg)" ${SK}/><path d="M32 26h56M32 38h40M32 50h28" stroke="var(--bd)" stroke-width="4"/>`],
+kunci:['Kunci akses','Rahasia untuk aplikasi mengakses akun cloud.',`<circle cx="38" cy="36" r="14" fill="#d19a00" fill-opacity=".4" ${SK}/><path d="M52 36h46M86 36v12M76 36v8" fill="none" ${SK}/>`]};
+const DM={0:['pc'],1:['pc','cloud'],8:['server','vm'],9:['vm','kontainer'],10:['fungsi'],11:['vm'],12:['db','cloud'],13:['db'],14:['cloud'],15:['cdn'],16:['server'],17:['lb','server'],20:['dompet'],21:['kunci'],25:['cdn','lb','server','fungsi','db']};
+function gal(fk){openOv('🧰 Galeri layanan',b=>{const g=E('div');g.style.cssText='display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px';
+ Object.keys(DV).forEach(k=>{const v=DV[k],c=E('div'),used=Object.keys(DM).filter(id=>DM[id].includes(k)).map(id=>ST.findIndex(x=>x.id==id)+1).filter(n=>n>0).sort((x,y)=>x-y);
+  c.id='dv-'+k;c.setAttribute('role','group');c.setAttribute('aria-label',v[0]);c.style.cssText='border:2px solid var(--bd);border-radius:10px;padding:8px;background:var(--bg)'+(k==fk?';outline:3px solid var(--or)':'');
+  c.innerHTML=`<svg viewBox="0 0 120 70" width="100%" height="84" role="img" aria-label="Gambar ${v[0]}">${v[2]}</svg><b>${v[0]}</b><br><span style="font-size:14px">${v[1]}</span><br><span style="font-size:13px;color:var(--mu)">Dipakai di tahap: ${used.join(', ')}</span>`;g.append(c)});
+ b.append(E('p','Gambar berikut hanya ilustrasi sederhana untuk mengenali bentuk perangkat.'),g);const f=fk&&b.querySelector('#dv-'+fk);if(f&&f.scrollIntoView)f.scrollIntoView({block:'center'})})}
+function devRow(){const d=$('#dvr');d.innerHTML='';const ks=DM[ST[I].id];if(!ks)return;d.append(E('span','🧰 Perangkat di tahap ini:'));ks.forEach(k=>{const x=E('button',DV[k][0]);x.onclick=()=>gal(k);d.append(x)})}
+$('#dv').onclick=()=>gal();
+$('#cu').onclick=()=>{window.cloudKeluar&&window.cloudKeluar()};
+})();
+</script>
+<script src="config.js"></script>
+<script src="identitas.js"></script>
+<script src="vendor/supabase-2.45.4.js"></script>
+<script>window.supabase||document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"><\/script>')</script>
+<script src="cloud.js"></script></body></html>
